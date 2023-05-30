@@ -14,7 +14,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-      <header>header-pokedex</header> 
       <MyMenu />   
       <div>{children}</div>
               
