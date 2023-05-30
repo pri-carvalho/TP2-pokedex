@@ -1,5 +1,5 @@
 import MyMenu from '@/components/molecules/myMenu/myMenu'
-import './globals.css'
+import '@/app/globals.css'
 import { Inter } from 'next/font/google'
 
 
