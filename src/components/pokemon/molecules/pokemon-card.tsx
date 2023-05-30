@@ -1,16 +1,13 @@
 'use client'
 import { getData } from "@/api/pokemon-api";
 import { PokemonApi } from "@/types/pokemon";
-import {
-  Button,
+import { 
   Card,
-  CardActionArea,
-  CardActions,
+  CardActionArea,  
   CardContent,
   CardMedia,
   Skeleton,
 } from "@mui/material";
-import useEnhancedEffect from "@mui/material/utils/useEnhancedEffect";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import PokemonCardButtom from "../atoms/PokemonCardButtom";
