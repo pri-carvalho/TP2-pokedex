@@ -18,6 +18,5 @@ export default async function Home() {
     <PokemonList data={data}/>
     </main>
     </div>
-
   );
 }
