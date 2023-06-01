@@ -17,7 +17,7 @@ const CarouselBanner: React.FC = () => {
     setActiveIndex((prevIndex) => (prevIndex === 4 ? 0 : prevIndex + 1));
   };
 
-  // Estilos do componente
+  // Styles de composant
   const styles = {
     container: {
       width: '100%',

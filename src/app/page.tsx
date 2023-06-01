@@ -7,7 +7,7 @@ export default function Home() {
     <div className={styles.container}>
       <CarouselBanner />
       <main className={styles.main}>
-        {/* Conteúdo da main */}
+        {/* contenu main */}
       </main>
     </div>
   );
