@@ -1,8 +1,14 @@
 import Image from 'next/image'
 import styles from './page.module.css'
+import CarouselBanner from '../components/molecules/banner/CarouselBanner';
 
 export default function Home() {
   return (
-    <main className={styles.main}> test home </main>
-  )
+    <div className={styles.container}>
+      <CarouselBanner />
+      <main className={styles.main}>
+        {/* Conteúdo da main */}
+      </main>
+    </div>
+  );
 }
