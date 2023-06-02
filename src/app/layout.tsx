@@ -1,10 +1,15 @@
 import React from 'react';
 import MyMenu from '@/components/molecules/myMenu/myMenu'
+
 import MyFooter from '@/components/molecules/myFooter/myFooter';
+
 import './globals.css'
+
+import '@/app/globals.css'
 import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
+
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,9 +19,10 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+
       <body className={inter.className}>
         <MyMenu />
-        <main>{children}</main>
+       <div>{children}</div>
         <MyFooter />
       </body>
     </html>
