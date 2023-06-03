@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 
 'use client'
 
@@ -32,7 +33,11 @@ export default function Pokedex() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <img src="/img/assets/logo.png" alt="Logo" style={{ height: '30px',width:'50px', marginRight: '5px' }} />
+          <img 
+            src="/img/assets/logo.png" 
+            alt="Logo" 
+            width= {120}
+            />
           <Typography
             variant="h6"
             noWrap

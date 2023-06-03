@@ -54,7 +54,7 @@ const CarouselBanner: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="lg">
+    <div>
         <Box sx={styles.imageContainer}>
           <IconButton
             sx={{ ...styles.arrowButton, ...styles.prevButton }}
@@ -79,7 +79,7 @@ const CarouselBanner: React.FC = () => {
             }}
           />
         </Box>
-    </Container>
+    </div>
   );
 };
 
