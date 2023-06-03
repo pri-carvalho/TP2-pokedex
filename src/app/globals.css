@@ -1,7 +1,21 @@
 
 body{
     margin: 0;
-a {
-    text-decoration: none;
-
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
 }
+a{text-decoration: none;
+}
+.css-1q39md6-MuiButtonBase-root-MuiButton-root {
+    min-width: 50px !important;
+    padding: 0px 8px !important;
+    font-weight: 800 !important;
+    
+}
+.css-o69gx8-MuiCardMedia-root {
+    background-color: lightgray;
+}
+/* button.MuiButtonBase-root.MuiButton-root.MuiButton-text:hover {
+    color: #ffcb06;
+} */

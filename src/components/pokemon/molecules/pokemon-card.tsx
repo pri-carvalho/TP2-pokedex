@@ -13,7 +13,8 @@ import { useState, useEffect } from "react";
 import PokemonCardButtom from "../atoms/PokemonCardButtom";
 
 export interface PokemonCardProps {
-  apiUrl: string
+  apiUrl: string;
+  imageSrc: string;
 }
 
 export default function PokemonCard(props: PokemonCardProps) {

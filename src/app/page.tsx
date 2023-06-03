@@ -12,11 +12,13 @@ export default async function Home() {
 
   return (
 
-    <div className={styles.container}>
+    <div>
       <CarouselBanner />
+      <div className={styles.container}>
       <main className={styles.main}>
     <PokemonList data={data}/>
     </main>
+    </div>
     </div>
   );
 }
