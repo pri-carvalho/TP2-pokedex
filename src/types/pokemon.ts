@@ -15,3 +15,7 @@ export interface PokemonApi{
     name: string;
     imageUrl: string
 }
+
+export interface PokemonEvolutionChain{
+    evolutionChainUrl: string;
+}
