@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PokemonCard from "@/components/pokemon/molecules/pokemon-card";
 import { Box, Breadcrumbs, Container, Grid, Paper, Typography } from "@mui/material";
 import Link from "next/link";
