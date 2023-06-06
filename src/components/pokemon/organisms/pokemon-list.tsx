@@ -30,7 +30,7 @@ export default function PokemonList(props: PokemonListProps) {
         <Grid container spacing={4}>
           {pokemonList?.results.map((pokemon) => (
               <Grid item xs={4} key={pokemon.name}>
-                <PokemonCard apiUrl={pokemon.url} />
+                <PokemonCard apiUrl={pokemon.url} imageSrc={""} />
               </Grid>
           ))}
         </Grid>
