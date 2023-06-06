@@ -48,10 +48,30 @@ export default function PokemonPage({ params }: PokemonPageParams) {
         evolutionText += `${evolutionChain.species.name} -> `;
         evolutionChain = evolutionChain.evolves_to[0];
       }
-      evolutionText = evolutionText.slice(0, -4); // Supprimer le dernier "-> "
+      evolutionText = evolutionText.slice(0, -4); // Supprimer le dernier "-> " 
       return evolutionText;
     }
     return "(informations d'évolution ici)";
+  }
+
+  function getCardsEvolution(evolutionData: any) {
+    if (evolutionData && evolutionData.chain) {
+      let evolutionChain = evolutionData.chain;
+      let evolutionName = [];
+      while (evolutionChain) {
+        evolutionName.push(evolutionChain.species.name);
+        evolutionChain = evolutionChain.evolves_to[0];
+      }
+      console.log(evolutionName);
+      return ( 
+        <>
+          {evolutionName.map((name: any) => (
+            // eslint-disable-next-line react/jsx-key
+            <PokemonCard apiUrl={`https://pokeapi.co/api/v2/pokemon/${name}/`} imageSrc={""}/>
+          ))}            
+        </>        
+      );
+    }
   }
 
   return (
@@ -65,38 +85,21 @@ export default function PokemonPage({ params }: PokemonPageParams) {
             <Typography color="text.primary">{params.slug}</Typography>
           </Breadcrumbs>
         </Box>
+        {/* Pokemon selecionado */}
+        <PokemonCard imageSrc={""} apiUrl={apiPokemonUrl} />
+        {/* Imagens de evolução */}
         <Grid container spacing={2}>
-          <Grid item xs={12}>
+          <Grid item xs={5}>            
+            {getCardsEvolution(evolutionData)}
+          </Grid>
+        </Grid>
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
             <Paper sx={{ p: 2 }}>
               {pokemonData && (
                 <>
                   <Typography variant="h1">{pokemonData.name}</Typography>
                   <Box sx={{ mt: 2, mb: 2 }}>
-                    <Carousel showThumbs={false}>
-                      <div>
-                        <PokemonCard imageSrc={pokemonData.sprites.front_default} apiUrl={apiPokemonUrl} />
-                      </div>
-                      {evolutionData && evolutionData.chain && evolutionData.chain.evolves_to.length > 0 && (
-                        <div>
-                          <Carousel>
-                            <div>
-                              <PokemonCard
-                                imageSrc={`https://pokeapi.co/api/v2/pokemon/${evolutionData.chain.species.name}/sprites/front_default`}
-                                apiUrl={`https://pokeapi.co/api/v2/pokemon/${evolutionData.chain.species.name}`}
-                              />
-                            </div>
-                            {evolutionData.chain.evolves_to.map((evolution: any) => (
-                              <div key={evolution.species.name}>
-                                <PokemonCard
-                                  imageSrc={`https://pokeapi.co/api/v2/pokemon/${evolution.species.name}/sprites/front_default`}
-                                  apiUrl={`https://pokeapi.co/api/v2/pokemon/${evolution.species.name}`}
-                                />
-                              </div>
-                            ))}
-                          </Carousel>
-                        </div>
-                      )}
-                    </Carousel>
                   </Box>
                 </>
               )}
