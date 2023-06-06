@@ -33,7 +33,7 @@ export default function PokemonPage({ params }: PokemonPageParams){
       <Grid container spacing={2}>
       <Grid item xs={8}>
         <h1>{params.slug}</h1>
-        <PokemonCard imageSrc="" apiUrl={apiPokemonUrl}/>
+        <PokemonCard apiUrl={apiPokemonUrl}/>
       </Grid>
       <Grid item xs={8}>
       

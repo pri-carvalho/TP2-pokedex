@@ -3,7 +3,23 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 6rem;
+  padding: 4rem 2rem;
   min-height: 100vh;
+  min-width: 730px;
 }
 
+.categoryAndLogo {
+  display: flex;
+  min-width: 300px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.categoryAndLogo img {
+  margin-right: 10px;
+}
+
+.categoryAndLogo h1 {
+  text-transform: capitalize;
+}

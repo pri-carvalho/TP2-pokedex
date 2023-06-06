@@ -14,7 +14,7 @@ import PokemonCardButtom from "../atoms/PokemonCardButtom";
 
 export interface PokemonCardProps {
   apiUrl: string;
-  imageSrc: string;
+  type?: string;
 }
 
 export default function PokemonCard(props: PokemonCardProps) {
