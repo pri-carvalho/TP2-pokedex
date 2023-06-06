@@ -16,6 +16,9 @@ a{text-decoration: none;
 .css-o69gx8-MuiCardMedia-root {
     background-color: lightgray;
 }
-/* button.MuiButtonBase-root.MuiButton-root.MuiButton-text:hover {
-    color: #ffcb06;
-} */
+.css-i0bk1x-MuiPaper-root {
+    padding: 3rem;
+    background-color: #cccccc !important;
+    /* background-color: #1976d2;
+    color: white; */
+}

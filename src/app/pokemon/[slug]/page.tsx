@@ -5,8 +5,6 @@ import { Box, Breadcrumbs, Container, Grid, Paper, Typography } from "@mui/mater
 import Link from "next/link";
 import { getData } from "@/api/pokemon-api";
 import { Home } from "@mui/icons-material";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 interface PokemonPageParams {
   params: {
@@ -64,12 +62,13 @@ export default function PokemonPage({ params }: PokemonPageParams) {
       }
       console.log(evolutionName);
       return ( 
-        <>
-          {evolutionName.map((name: any) => (
-            // eslint-disable-next-line react/jsx-key
-            <PokemonCard apiUrl={`https://pokeapi.co/api/v2/pokemon/${name}/`} imageSrc={""}/>
-          ))}            
-        </>        
+        <Grid container spacing={2} justifyContent="center" sx={{ mt: 2, mb: 2 }}>
+        {evolutionName.map((name: any) => (
+          <Grid item key={name} xs={6} sm={6} md={3} lg={3}>
+            <PokemonCard apiUrl={`https://pokeapi.co/api/v2/pokemon/${name}/`} imageSrc={""} />
+          </Grid>
+        ))}
+      </Grid>       
       );
     }
   }
@@ -86,23 +85,27 @@ export default function PokemonPage({ params }: PokemonPageParams) {
           </Breadcrumbs>
         </Box>
         {/* Pokemon selecionado */}
-        <PokemonCard imageSrc={""} apiUrl={apiPokemonUrl} />
-        {/* Imagens de evolução */}
-        <Grid container spacing={2}>
-          <Grid item xs={5}>            
-            {getCardsEvolution(evolutionData)}
-          </Grid>
-        </Grid>
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
-            <Paper sx={{ p: 2 }}>
-              {pokemonData && (
+        {pokemonData && (
                 <>
                   <Typography variant="h1">{pokemonData.name}</Typography>
                   <Box sx={{ mt: 2, mb: 2 }}>
                   </Box>
                 </>
               )}
+        <Grid container justifyContent="center">
+          <Grid item xs={12} sm={4}>
+            <PokemonCard imageSrc={""} apiUrl={apiPokemonUrl} />
+          </Grid>
+        </Grid>
+        {/* Imagens de evolução */}
+        <Grid container spacing={2}>
+            <Grid>          
+            {getCardsEvolution(evolutionData)}
+          </Grid>
+        </Grid>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sx={{ mt: 2, mb: 4 }}>
+            <Paper sx={{ p: 2 }}>
               <Typography variant="h2">Informations du Pokémon</Typography>
               {pokemonData && (
                 <ul>
