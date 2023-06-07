@@ -14,9 +14,32 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 
+interface ItemMenu {
+  id:string;
+  text:string;
+}
 
-
-const pages = ['Eletric', 'Roche', 'Eau', 'Feu', 'Glace', 'Combat', 'Poison', 'Insect', 'Ténebres', 'Vol', 'Dragon', 'Fée', 'Acier', 'Psy', 'Normal', 'Spectre', 'Plante', 'Sol'];
+const itemsMenu:ItemMenu[] = [  
+  { id:'electric', text: 'Électrik'},
+  { id:'rock', text: 'Roche'},
+  { id:'water', text: 'Eau'},
+  { id:'fire', text: 'Feu'},
+  { id:'ice', text: 'Glace'},
+  { id:'fighting', text: 'Combat'},
+  { id:'poison', text: 'Poison'},
+  { id:'bug', text: 'Insect'},
+  { id:'darkness', text: 'Ténebres'},
+  { id:'flying', text: 'Vol'},
+  { id:'dragon', text: 'Dragon'},
+  { id:'fairy', text: 'Fée'},
+  { id:'steel', text: 'Acier'},
+  { id:'psychic', text: 'Psy'},
+  { id:'normal', text: 'Normal'},
+  { id:'spectre', text: 'Spectrum'},
+  { id:'grass', text: 'Plante'},  
+  { id:'ground', text: 'Sol'}
+  
+];
 
 export default function Pokedex() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -85,22 +108,23 @@ export default function Pokedex() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {itemsMenu.map(({ id, text }) => (
+                <MenuItem key={id}>
+                  <Button component="a" href={`/pokemon/type/${id}`}>
+                    {text}
+                  </Button>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {itemsMenu.map(({id, text}) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={id}
+                component="a" href={`/pokemon/type/${id}`}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {text}
               </Button>
             ))}
           </Box>
