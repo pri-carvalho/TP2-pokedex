@@ -15,12 +15,12 @@ import PokemonCardButtom from "../atoms/PokemonCardButtom";
 export interface PokemonCardProps {
   apiUrl: string;
   imageSrc: string;
+  showButton?: boolean;
 }
 
 export default function PokemonCard(props: PokemonCardProps) {
   const [loading, setLoading] = useState<boolean>(true)
   const [pokemon, setPokemon] = useState<PokemonApi>()
-
 
   useEffect(() => {
     if(loading){
@@ -36,6 +36,18 @@ export default function PokemonCard(props: PokemonCardProps) {
       })
     }
   }, [loading, props.apiUrl])
+
+  function hiddenButton(): boolean {
+    console.log("hiddenButton");
+    if(props.showButton == undefined || props.showButton) {
+      console.log("true");
+      return true;
+    }
+    else  {
+      console.log("false");
+      return false;
+    }
+  }
 
   return (
     <Link href={pokemon?.name ? `/pokemon/${pokemon?.name}`: "#"}>
@@ -54,10 +66,12 @@ export default function PokemonCard(props: PokemonCardProps) {
             component="img"
             image={pokemon?.imageUrl}
             alt="green iguana"
-          />        
-          <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <PokemonCardButtom text={pokemon?.name} href={pokemon?.name ? `/pokemon/${pokemon?.name}`: "#"} />
-          </CardContent>
+          /> 
+            {hiddenButton() ? 
+              <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <PokemonCardButtom text={pokemon?.name} href={pokemon?.name ? `/pokemon/${pokemon?.name}`: "#"} />
+              </CardContent>  
+              : ''}
           </>
         )}     
         </CardActionArea>

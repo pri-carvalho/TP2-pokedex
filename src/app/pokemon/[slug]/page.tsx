@@ -64,7 +64,7 @@ export default function PokemonPage({ params }: PokemonPageParams) {
       return ( 
         <Grid container spacing={2} justifyContent="center" sx={{ mt: 2, mb: 2 }}>
         {evolutionName.map((name: any) => (
-          <Grid item key={name} xs={6} sm={6} md={3} lg={3}>
+          <Grid item key={name} xs={5} sm={5} md={3} lg={3}>
             <PokemonCard apiUrl={`https://pokeapi.co/api/v2/pokemon/${name}/`} imageSrc={""} />
           </Grid>
         ))}
@@ -84,7 +84,7 @@ export default function PokemonPage({ params }: PokemonPageParams) {
             <Typography color="text.primary">{params.slug}</Typography>
           </Breadcrumbs>
         </Box>
-        {/* Pokemon selecionado */}
+        {/* Selected Pokemon */}
         {pokemonData && (
                 <>
                   <Typography variant="h1">{pokemonData.name}</Typography>
@@ -94,29 +94,30 @@ export default function PokemonPage({ params }: PokemonPageParams) {
               )}
         <Grid container justifyContent="center">
           <Grid item xs={12} sm={4}>
-            <PokemonCard imageSrc={""} apiUrl={apiPokemonUrl} />
+            <PokemonCard imageSrc={""} apiUrl={apiPokemonUrl} showButton={false} />
           </Grid>
         </Grid>
-        {/* Imagens de evolução */}
+        {/* Image evolution */}
+        <Typography variant="h2" align="center" sx={{ mt: 4}}>Évolutions</Typography>
         <Grid container spacing={2}>
             <Grid>          
             {getCardsEvolution(evolutionData)}
           </Grid>
         </Grid>
-        <Grid container spacing={2}>
-          <Grid item xs={12} sx={{ mt: 2, mb: 4 }}>
+        {/* Informations du Pokémon */}
+        <Grid container spacing={2} justifyContent="center">
+          <Grid item xs={10} sx={{ mt: 2, mb: 4 }} >
             <Paper sx={{ p: 2 }}>
-              <Typography variant="h2">Informations du Pokémon</Typography>
+              <Typography variant="h3">Informations du Pokémon</Typography>
               {pokemonData && (
                 <ul>
                   <li>Numéro du Pokédex : {pokemonData.id}</li>
                   <li>Nom : {pokemonData.name}</li>
                   <li>Type : {pokemonData.types.map((type: any) => type.type.name).join(", ")}</li>
                   <li>Hauteur : {pokemonData.height} m</li>
-                  <li>Évolution : {getEvolutionText(evolutionData)}</li>
                 </ul>
               )}
-              <Typography variant="h2">Autres informations</Typography>
+              <Typography variant="h3">Autres informations</Typography>
               {pokemonData && (
                 <ul>
                   <li>Habilité : {pokemonData.abilities.map((ability: any) => ability.ability.name).join(", ")}</li>
