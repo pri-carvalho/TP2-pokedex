@@ -16,6 +16,7 @@ export interface PokemonCardProps {
   apiUrl: string;
   imageSrc: string;
   showButton?: boolean;
+  type?: string;
 }
 
 export default function PokemonCard(props: PokemonCardProps) {

@@ -1,12 +1,12 @@
 'use client'
-import React, { useState, useEffect } from "react";
+
 import PokemonCard from "@/components/pokemon/molecules/pokemon-card";
-import { Box, Breadcrumbs, Container, Grid, Paper, Typography } from "@mui/material";
+import { Box, Breadcrumbs, Container, Grid, Typography } from "@mui/material";
 import Link from "next/link";
 import { getData } from "@/api/pokemon-api";
 import { Home } from "@mui/icons-material";
 
-interface PokemonPageParams {
+interface PokemonPageParams{
   params: {
     slug: string;
   };
@@ -129,5 +129,5 @@ export default function PokemonPage({ params }: PokemonPageParams) {
         </Grid>
       </Container>
     </>
-  );
+    )
 }
