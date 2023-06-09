@@ -1,5 +1,6 @@
 'use client'
 
+import React, { useState, useEffect } from "react";
 import PokemonCard from "@/components/pokemon/molecules/pokemon-card";
 import { Box, Breadcrumbs, Container, Grid, Typography } from "@mui/material";
 import Link from "next/link";
@@ -38,29 +39,19 @@ export default function PokemonPage({ params }: PokemonPageParams) {
     fetchData();
   }, [apiPokemonUrl]);
 
-  function getEvolutionText(evolutionData: any): string {
-    if (evolutionData && evolutionData.chain) {
-      let evolutionChain = evolutionData.chain;
-      let evolutionText = "";
-      while (evolutionChain) {
-        evolutionText += `${evolutionChain.species.name} -> `;
-        evolutionChain = evolutionChain.evolves_to[0];
-      }
-      evolutionText = evolutionText.slice(0, -4); // Supprimer le dernier "-> " 
-      return evolutionText;
-    }
-    return "(informations d'évolution ici)";
-  }
-
   function getCardsEvolution(evolutionData: any) {
     if (evolutionData && evolutionData.chain) {
       let evolutionChain = evolutionData.chain;
-      let evolutionName = [];
+      let evolutionName: any[] = [];
       while (evolutionChain) {
         evolutionName.push(evolutionChain.species.name);
+        if (evolutionChain.evolves_to.length > 1) {
+          evolutionChain.evolves_to.forEach((evolution: any) => {
+            evolutionName.push(evolution.species.name);
+          });
+        }
         evolutionChain = evolutionChain.evolves_to[0];
       }
-      console.log(evolutionName);
       return ( 
         <Grid container spacing={2} justifyContent="center" sx={{ mt: 2, mb: 2 }}>
         {evolutionName.map((name: any) => (
@@ -107,7 +98,7 @@ export default function PokemonPage({ params }: PokemonPageParams) {
         {/* Informations du Pokémon */}
         <Grid container spacing={2} justifyContent="center">
           <Grid item xs={10} sx={{ mt: 2, mb: 4 }} >
-            <Paper sx={{ p: 2 }}>
+            <div>
               <Typography variant="h3">Informations du Pokémon</Typography>
               {pokemonData && (
                 <ul>
@@ -124,7 +115,7 @@ export default function PokemonPage({ params }: PokemonPageParams) {
                   <li>Statistiques : {pokemonData.stats.map((stat: any) => `${stat.stat.name} : ${stat.base_stat}`).join(", ")}</li>
                 </ul>
               )}
-            </Paper>
+            </div>
           </Grid>
         </Grid>
       </Container>
