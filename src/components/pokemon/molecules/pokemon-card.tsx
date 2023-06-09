@@ -29,7 +29,7 @@ export default function PokemonCard(props: PokemonCardProps) {
         setPokemon({
           id: apiResult.id,
           name: apiResult.name,
-          imageUrl: apiResult.sprites.other["official-artwork"].front_default
+          imageUrl: apiResult.sprites.other["official-artwork"].front_default || '/img/assets/pokeball.png'
         })
       }).finally(() => {
         setLoading(false)
