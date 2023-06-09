@@ -23,15 +23,13 @@ export default function Filter({ params }: FilterProps){
   }, [params.slug])
 
  return (
-   <div className={styles.container}>
-     <main className={styles.main}>
-        <div className={styles.categoryAndLogo}>
-          <Image src={`/img/pokedex/${type.id}.png`} alt={type.text} width={60} height={60}/>
-          <h1>{type.text}</h1>
-        </div>
-       <PokemonList type={type.id}/>
-     </main>
-   </div>
+    <main className={styles.main}>
+      <div className={styles.categoryAndLogo}>
+        <Image src={`/img/pokedex/${type.id}.png`} alt={type.text} width={60} height={60}/>
+        <h1>{type.text}</h1>
+      </div>
+      <PokemonList type={type.id}/>
+    </main>
  );
 }
 
