@@ -8,42 +8,126 @@ import { Home } from "@mui/icons-material";
 
 interface PokemonPageParams{
   params: {
-    slug: string
-  }
+    slug: string;
+  };
 }
 
-export default function PokemonPage({ params }: PokemonPageParams){
-  const data = getData("https://pokeapi.co/api/v2/pokemon/ivysaur")
-  const apiPokemonUrl = `https://pokeapi.co/api/v2/pokemon/${params.slug}` 
-    
+export default function PokemonPage({ params }: PokemonPageParams) {
+  const [pokemonData, setPokemonData] = useState<any>(null);
+  const [evolutionData, setEvolutionData] = useState<any>(null);
+  const apiPokemonUrl = `https://pokeapi.co/api/v2/pokemon/${params.slug}`;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getData(apiPokemonUrl);
+        setPokemonData(data);
+
+        if (data.species && data.species.url) {
+          const speciesData = await getData(data.species.url);
+          if (speciesData.evolution_chain && speciesData.evolution_chain.url) {
+            const evolutionChainData = await getData(speciesData.evolution_chain.url);
+            setEvolutionData(evolutionChainData);
+          }
+        }
+      } catch (error) {
+        console.error("Erreur lors de la récupération des données du Pokémon :", error);
+      }
+    };
+
+    fetchData();
+  }, [apiPokemonUrl]);
+
+  function getEvolutionText(evolutionData: any): string {
+    if (evolutionData && evolutionData.chain) {
+      let evolutionChain = evolutionData.chain;
+      let evolutionText = "";
+      while (evolutionChain) {
+        evolutionText += `${evolutionChain.species.name} -> `;
+        evolutionChain = evolutionChain.evolves_to[0];
+      }
+      evolutionText = evolutionText.slice(0, -4); // Supprimer le dernier "-> " 
+      return evolutionText;
+    }
+    return "(informations d'évolution ici)";
+  }
+
+  function getCardsEvolution(evolutionData: any) {
+    if (evolutionData && evolutionData.chain) {
+      let evolutionChain = evolutionData.chain;
+      let evolutionName = [];
+      while (evolutionChain) {
+        evolutionName.push(evolutionChain.species.name);
+        evolutionChain = evolutionChain.evolves_to[0];
+      }
+      console.log(evolutionName);
+      return ( 
+        <Grid container spacing={2} justifyContent="center" sx={{ mt: 2, mb: 2 }}>
+        {evolutionName.map((name: any) => (
+          <Grid item key={name} xs={5} sm={5} md={3} lg={3}>
+            <PokemonCard apiUrl={`https://pokeapi.co/api/v2/pokemon/${name}/`} imageSrc={""} />
+          </Grid>
+        ))}
+      </Grid>       
+      );
+    }
+  }
+
   return (
     <>
-    <Container fixed>
-      <Box sx={{
-        mt: 2,
-        mb: 2,
-      }}>
-      <Breadcrumbs aria-label="breadcrumb">
-      <Link href="/">
-        Home
-      </Link>
-      <Typography color="text.primary">{params.slug}</Typography>
-    </Breadcrumbs>
-      </Box>
-      <Grid container spacing={2}>
-      <Grid item xs={8}>
-        <h1>{params.slug}</h1>
-        <PokemonCard apiUrl={apiPokemonUrl}/>
-      </Grid>
-      <Grid item xs={8}>
-      
-       <hr></hr>
-       <Box>
-          <h2>Types</h2>
-       </Box>
-      </Grid>
-    </Grid>
-    </Container>
+      <Container fixed>
+        <Box sx={{ mt: 2, mb: 2 }}>
+          <Breadcrumbs aria-label="breadcrumb">
+            <Link href="/">
+              <Home />
+            </Link>
+            <Typography color="text.primary">{params.slug}</Typography>
+          </Breadcrumbs>
+        </Box>
+        {/* Selected Pokemon */}
+        {pokemonData && (
+                <>
+                  <Typography variant="h1">{pokemonData.name}</Typography>
+                  <Box sx={{ mt: 2, mb: 2 }}>
+                  </Box>
+                </>
+              )}
+        <Grid container justifyContent="center">
+          <Grid item xs={12} sm={4}>
+            <PokemonCard imageSrc={""} apiUrl={apiPokemonUrl} showButton={false} />
+          </Grid>
+        </Grid>
+        {/* Image evolution */}
+        <Typography variant="h2" align="center" sx={{ mt: 4}}>Évolutions</Typography>
+        <Grid container spacing={2}>
+            <Grid>          
+            {getCardsEvolution(evolutionData)}
+          </Grid>
+        </Grid>
+        {/* Informations du Pokémon */}
+        <Grid container spacing={2} justifyContent="center">
+          <Grid item xs={10} sx={{ mt: 2, mb: 4 }} >
+            <Paper sx={{ p: 2 }}>
+              <Typography variant="h3">Informations du Pokémon</Typography>
+              {pokemonData && (
+                <ul>
+                  <li>Numéro du Pokédex : {pokemonData.id}</li>
+                  <li>Nom : {pokemonData.name}</li>
+                  <li>Type : {pokemonData.types.map((type: any) => type.type.name).join(", ")}</li>
+                  <li>Hauteur : {pokemonData.height} m</li>
+                </ul>
+              )}
+              <Typography variant="h3">Autres informations</Typography>
+              {pokemonData && (
+                <ul>
+                  <li>Habilité : {pokemonData.abilities.map((ability: any) => ability.ability.name).join(", ")}</li>
+                  <li>Statistiques : {pokemonData.stats.map((stat: any) => `${stat.stat.name} : ${stat.base_stat}`).join(", ")}</li>
+                </ul>
+              )}
+            </Paper>
+          </Grid>
+        </Grid>
+      </Container>
     </>
     )
 }

@@ -28,7 +28,7 @@ const CarouselBanner: React.FC = () => {
     },
     imageContainer: {
       width: '100%',
-      height: '50vh',
+      height: '70vh',
       position: 'relative',
       overflow: 'hidden',
     },
@@ -51,6 +51,7 @@ const CarouselBanner: React.FC = () => {
     nextButton: {
       right: theme.spacing(2),
     },
+
   };
 
   return (
