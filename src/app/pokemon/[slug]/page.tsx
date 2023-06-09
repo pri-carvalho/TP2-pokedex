@@ -6,7 +6,6 @@ import { Box, Breadcrumbs, Container, Grid, Typography, Paper } from "@mui/mater
 import Link from "next/link";
 import { getData } from "@/api/pokemon-api";
 import { Home } from "@mui/icons-material";
-import { useState, useEffect } from "react";
 
 interface PokemonPageParams{
   params: {
