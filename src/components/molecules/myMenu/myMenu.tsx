@@ -13,7 +13,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import Link from "next/link";
+
 import { types } from '@/types/pokemon'
+
 interface ItemMenu {
   id:string;
   text:string;
@@ -36,13 +39,13 @@ export default function Pokedex() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-        <Button component="a" href={'/'} >
-          <img 
-            src="/img/assets/logo.png" 
-            alt="Logo" 
-            width= {120}
-            />
-          </Button>
+          <Link href="/">
+            <img 
+              src="/img/assets/logo.png" 
+              alt="Logo" 
+              width= {120}
+              />
+          </Link>
           <Typography
             variant="h6"
             noWrap

@@ -38,13 +38,10 @@ export default function PokemonCard(props: PokemonCardProps) {
   }, [loading, props.apiUrl])
 
   function hiddenButton(): boolean {
-    console.log("hiddenButton");
     if(props.showButton == undefined || props.showButton) {
-      console.log("true");
       return true;
     }
     else  {
-      console.log("false");
       return false;
     }
   }
