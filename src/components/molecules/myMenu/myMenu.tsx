@@ -64,7 +64,7 @@ export default function Pokedex() {
           
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, position: 'absolute', right: 0 }}>
             <IconButton
               size="large"
               aria-label="account of current user"

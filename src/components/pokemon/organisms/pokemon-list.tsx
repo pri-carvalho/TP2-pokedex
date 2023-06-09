@@ -62,7 +62,7 @@ const PokemonList = (props: PokemonListProps) => {
   return (
     <Container fixed>
       {loading ? (
-        <Box sx={{ mb: 2, display: "flex", justifyContent: "center" }}>
+        <Box sx={{ mb: 2, display: "flex", justifyContent: "center", itemsAlign: 'center' }}>
           <CircularProgress />
         </Box>
       ) : (
