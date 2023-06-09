@@ -5,14 +5,11 @@ import PokemonList from "@/components/pokemon/organisms/pokemon-list";
 
 export default async function Home() {
   return (
-
-    <div>
+    <>
       <CarouselBanner />
-      <div className={styles.container}>
       <main className={styles.main}>
         <PokemonList/>
       </main>
-    </div>
-    </div>
+    </>
   );
 }

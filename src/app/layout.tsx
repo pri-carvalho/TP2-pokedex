@@ -21,9 +21,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
 
       <body className={inter.className}>
-        <MyMenu />
-       <div>{children}</div>
-        <MyFooter />
+        <div className='container'>
+          <MyMenu />
+          {children}
+          <MyFooter />
+        </div>
       </body>
     </html>
   );

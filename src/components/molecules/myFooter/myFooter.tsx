@@ -20,16 +20,19 @@ function MyFooter() {
       </AppBar>
       <AppBar position="static" sx={{height:'60px'}}>
       <Toolbar>
-        <Typography variant="body1" component="div" sx={{ marginLeft: '100px' }}>
+        <Typography variant="body1" component="div" sx={{ flexWrap: 'wrap'}}>
               Aline
             </Typography>
-            <Typography variant="body1" component="div" sx={{ marginLeft: '20px', marginRight: '20px' }}>
+            <Typography component="div" sx={{ marginLeft: '0.5rem', marginRight: '0.5rem' }}>&bull;</Typography>
+            <Typography variant="body1" component="div">
               Asmae
             </Typography>
-            <Typography variant="body1" component="div" sx={{ marginLeft: '20px', marginRight: '20px' }}>
+            <Typography component="div" sx={{ marginLeft: '0.5rem', marginRight: '0.5rem' }}>&bull;</Typography>
+            <Typography variant="body1" component="div">
               Juliana
             </Typography>
-            <Typography variant="body1" component="div" sx={{ marginLeft: '20px', marginRight: '20px' }}>
+            <Typography component="div" sx={{ marginLeft: '0.5rem', marginRight: '0.5rem' }}>&bull;</Typography>
+            <Typography variant="body1" component="div" sx={{ marginRight: '1rem' }}>
               Priscila
             </Typography>
             <Box sx={{ flexGrow: 1 }} />
