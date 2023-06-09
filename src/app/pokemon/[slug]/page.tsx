@@ -1,10 +1,11 @@
 'use client'
 
 import PokemonCard from "@/components/pokemon/molecules/pokemon-card";
-import { Box, Breadcrumbs, Container, Grid, Typography } from "@mui/material";
+import { Box, Breadcrumbs, Container, Grid, Typography, Paper } from "@mui/material";
 import Link from "next/link";
 import { getData } from "@/api/pokemon-api";
 import { Home } from "@mui/icons-material";
+import { useState, useEffect } from "react";
 
 interface PokemonPageParams{
   params: {
@@ -65,7 +66,7 @@ export default function PokemonPage({ params }: PokemonPageParams) {
         <Grid container spacing={2} justifyContent="center" sx={{ mt: 2, mb: 2 }}>
         {evolutionName.map((name: any) => (
           <Grid item key={name} xs={5} sm={5} md={3} lg={3}>
-            <PokemonCard apiUrl={`https://pokeapi.co/api/v2/pokemon/${name}/`} imageSrc={""} />
+            <PokemonCard apiUrl={`https://pokeapi.co/api/v2/pokemon/${name}/`} />
           </Grid>
         ))}
       </Grid>       
@@ -94,7 +95,7 @@ export default function PokemonPage({ params }: PokemonPageParams) {
               )}
         <Grid container justifyContent="center">
           <Grid item xs={12} sm={4}>
-            <PokemonCard imageSrc={""} apiUrl={apiPokemonUrl} showButton={false} />
+            <PokemonCard apiUrl={apiPokemonUrl} showButton={false} />
           </Grid>
         </Grid>
         {/* Image evolution */}

@@ -13,33 +13,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-
+import { types } from '@/types/pokemon'
 interface ItemMenu {
   id:string;
   text:string;
 }
 
-const itemsMenu:ItemMenu[] = [  
-  { id:'electric', text: 'Électrik'},
-  { id:'rock', text: 'Roche'},
-  { id:'water', text: 'Eau'},
-  { id:'fire', text: 'Feu'},
-  { id:'ice', text: 'Glace'},
-  { id:'fighting', text: 'Combat'},
-  { id:'poison', text: 'Poison'},
-  { id:'bug', text: 'Insect'},
-  { id:'darkness', text: 'Ténebres'},
-  { id:'flying', text: 'Vol'},
-  { id:'dragon', text: 'Dragon'},
-  { id:'fairy', text: 'Fée'},
-  { id:'steel', text: 'Acier'},
-  { id:'psychic', text: 'Psy'},
-  { id:'normal', text: 'Normal'},
-  { id:'spectre', text: 'Spectrum'},
-  { id:'grass', text: 'Plante'},  
-  { id:'ground', text: 'Sol'}
-  
-];
+const itemsMenu = types;
 
 export default function Pokedex() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -56,11 +36,13 @@ export default function Pokedex() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
+        <Button component="a" href={'/'} >
           <img 
             src="/img/assets/logo.png" 
             alt="Logo" 
             width= {120}
             />
+          </Button>
           <Typography
             variant="h6"
             noWrap

@@ -14,7 +14,6 @@ import PokemonCardButtom from "../atoms/PokemonCardButtom";
 
 export interface PokemonCardProps {
   apiUrl: string;
-  imageSrc: string;
   showButton?: boolean;
   type?: string;
 }
@@ -22,7 +21,7 @@ export interface PokemonCardProps {
 export default function PokemonCard(props: PokemonCardProps) {
   const [loading, setLoading] = useState<boolean>(true)
   const [pokemon, setPokemon] = useState<PokemonApi>()
-
+  
   useEffect(() => {
     if(loading){
       getData(props.apiUrl)
