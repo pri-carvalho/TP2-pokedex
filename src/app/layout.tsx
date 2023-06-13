@@ -1,6 +1,5 @@
 import React from 'react';
 import MyMenu from '@/components/molecules/myMenu/myMenu'
-
 import MyFooter from '@/components/molecules/myFooter/myFooter';
 
 import './globals.css'
@@ -19,7 +18,6 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-
       <body className={inter.className}>
         <div className='container'>
           <MyMenu />
