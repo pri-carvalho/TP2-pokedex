@@ -37,7 +37,7 @@ export const types:PokemonType[] = [
     { id:'steel', text: 'Acier'},
     { id:'psychic', text: 'Psy'},
     { id:'normal', text: 'Normal'},
-    { id:'spectre', text: 'Spectrum'},
+    { id:'ghost', text: 'Spectrum'},
     { id:'grass', text: 'Plante'},  
     { id:'ground', text: 'Sol'}
   ];
